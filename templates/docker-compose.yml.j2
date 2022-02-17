@@ -35,19 +35,19 @@ services:
       --no-relay
 {% endif %}
 {% if go_waku_store_enabled %}
-      --store=true
+      --store
 {% for node in go_waku_store_nodes %}
-      --store-node=
+      --store-node={{ node }}
 {% endfor %}
 {% endif %}
 {% if go_waku_filter_enabled %}
-      --filter=true
+      --filter
 {% for node in go_waku_filter_nodes %}
-      --filter-node=
+      --filter-node={{ node }}
 {% endfor %}
 {% endif %}
 {% if go_waku_lightpush_enabled %}
-      --lightpush=true
+      --lightpush
 {% for node in go_waku_lightpush_nodes %}
       --lightpush-node={{ node }}
 {% endfor %}
