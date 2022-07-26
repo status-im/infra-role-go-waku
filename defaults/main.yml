@@ -7,6 +7,8 @@ go_waku_cont_vol: '{{ go_waku_service_path }}/node'
 go_waku_cont_tag: 'latest'
 go_waku_cont_image: 'statusteam/go-waku:{{ go_waku_cont_tag }}'
 
+go_waku_dns4_domain_name: '{{ ansible_hostname }}'
+
 # Value for private node key which is used to create public enode key
 go_waku_node_key: ~
 go_waku_node_key_file_path: '{{ go_waku_cont_vol }}/nodekey'
@@ -32,7 +34,7 @@ go_waku_filter_enabled: false
 go_waku_filter_nodes: []
 go_waku_lightpush_enabled: false
 go_waku_lightpush_nodes: []
-# esperimental discovery support
+# experimental discovery support
 go_waku_rendezvous_enabled: false
 go_waku_rendezvous_nodes: []
 go_waku_rendezvous_server_enabled: false

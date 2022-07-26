@@ -29,6 +29,7 @@ services:
       --log-level={{ go_waku_log_level }}
       --port={{ go_waku_libp2p_port }}
       --advertise-address={{ go_waku_public_address }}
+      --dns4-domain-name={{ go_waku_dns4_domain_name }}
       --use-db
       --dbpath=/data/store.db
 {% if not go_waku_relay_enabled %}
