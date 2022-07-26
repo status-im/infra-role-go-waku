@@ -39,7 +39,13 @@ go_waku_rendezvous_enabled: false
 go_waku_rendezvous_nodes: []
 go_waku_rendezvous_server_enabled: false
 
+# Ports
 go_waku_libp2p_port: 9000
+go_waku_rpc_enabled: true
+go_waku_rpc_admin_enabled: true
+go_waku_rpc_private_enabled: false
+go_waku_rpc_port: 8545
+go_waku_rpc_address: '127.0.0.1'
 go_waku_metrics_enabled: true
 go_waku_metrics_port: 8008
 go_waku_websocket_enabled: false

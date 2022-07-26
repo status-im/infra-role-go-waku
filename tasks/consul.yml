@@ -2,11 +2,11 @@
 - name: Prepare Consul services
   set_fact:
     consul_services:
-      - id: '{{ go_waku_service_name }}'
+      - id:   '{{ go_waku_service_name }}'
         name: '{{ go_waku_service_name }}'
         port: '{{ go_waku_libp2p_port }}'
         address: '{{ ansible_host }}'
-        tags: ['nim', 'waku']
+        tags: ['go', 'waku']
         meta:
           node_enode: '{{ go_waku_node_multiaddr }}'
         checks:
@@ -14,11 +14,21 @@
             type: 'tcp'
             tcp: 'localhost:{{ go_waku_libp2p_port }}'
 
-      - id: '{{ go_waku_service_name }}-websocket'
+      - id:   '{{ go_waku_service_name }}-rpc'
+        name: '{{ go_waku_service_name }}-rpc'
+        port: '{{ go_waku_rpc_port }}'
+        address: '{{ ansible_host }}'
+        tags: ['go', 'waku', 'rpc']
+        checks:
+          - name: '{{ go_waku_service_name }}-rpc-health'
+            type: 'script'
+            script: '{{ go_waku_service_path }}/rpc.sh get_waku_v2_debug_v1_info'
+
+      - id:   '{{ go_waku_service_name }}-websocket'
         name: '{{ go_waku_service_name }}-websocket'
         port: '{{ go_waku_websocket_port }}'
         address: '{{ ansible_local.wireguard.address }}'
-        tags: ['nim', 'waku', 'websocket']
+        tags: ['go', 'waku', 'websocket']
         meta:
           node_enode: '/dns4/{{ go_waku_websocket_ssl_domain | mandatory }}/tcp/443/wss/p2p/{{ go_waku_node_peer_id }}'
         checks:
@@ -30,7 +40,7 @@
         name: '{{ go_waku_service_name }}-metrics'
         port: '{{ go_waku_metrics_port }}'
         address: '{{ ansible_local.wireguard.address }}'
-        tags: ['nim', 'waku', 'metrics']
+        tags: ['go', 'waku', 'metrics']
         meta:
           container: '{{ go_waku_service_name }}'
         checks:
@@ -38,11 +48,17 @@
             type: 'http'
             http: 'http://localhost:{{ go_waku_metrics_port }}/health'
 
-- name: Disable websocket service
+- name: Disable Websocket service
   set_fact:
     consul_services: |
       {{ consul_services | rejectattr('name', 'match', '.*-websocket') | list }}
   when: not go_waku_websocket_enabled
+
+- name: Disable RPC service
+  set_fact:
+    consul_services: |
+      {{ consul_services | rejectattr('name', 'match', '.*-rpc') | list }}
+  when: not go_waku_rpc_enabled
 
 - name: Create Consul services
   include_role: name=consul-service

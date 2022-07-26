@@ -21,6 +21,9 @@ services:
     volumes:
       - '{{ go_waku_cont_vol }}/data:/data'
     ports:
+{% if go_waku_rpc_enabled %}
+      - '{{ go_waku_rpc_address }}:{{ go_waku_rpc_port }}:{{ go_waku_rpc_port }}/tcp'
+{% endif %}
       - '{{ go_waku_libp2p_port }}:{{ go_waku_libp2p_port }}/tcp'
       - '{{ go_waku_metrics_port }}:{{ go_waku_metrics_port }}/tcp'
       - '{{ go_waku_websocket_port }}:{{ go_waku_websocket_port }}/tcp'
@@ -65,6 +68,13 @@ services:
 {% if go_waku_rendezvous_server_enabled %}
       --rendezvous-server
       --rendezvous-db-path=/data/rendezvous
+{% endif %}
+      --rpc={{ go_waku_rpc_enabled | bool }}
+{% if go_waku_rpc_enabled %}
+      --rpc-port={{ go_waku_rpc_port }}
+      --rpc-address=0.0.0.0
+      --rpc-admin={{ go_waku_rpc_admin_enabled | bool }}
+      --rpc-private={{ go_waku_rpc_private_enabled | bool }}
 {% endif %}
 {% if go_waku_metrics_enabled %}
       --metrics
