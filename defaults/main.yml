@@ -2,7 +2,7 @@
 go_waku_service_name: 'go-waku'
 go_waku_service_path: '/docker/{{ go_waku_service_name }}'
 
-go_waku_cont_name: '{{ go_waku_service_name }}-node'
+go_waku_cont_name: '{{ go_waku_service_name }}'
 go_waku_cont_vol: '{{ go_waku_service_path }}/node'
 go_waku_cont_tag: 'latest'
 go_waku_cont_image: 'statusteam/go-waku:{{ go_waku_cont_tag }}'
