@@ -56,13 +56,3 @@
     volumes:
       - '{{ go_waku_cont_vol }}:/node:rw'
   when: pubkey_file.stat.exists == False
-
-- name: Read public key to from a file
-  slurp:
-    src: '{{ go_waku_node_multiaddr_path }}'
-  register: pubkey_slurp
-
-- name: Extract node key
-  set_fact:
-    go_waku_node_multiaddr: '{{ pubkey_slurp.content | b64decode | trim }}'
-    go_waku_node_peer_id: '{{ pubkey_slurp.content | b64decode | trim | split("/") | last }}'

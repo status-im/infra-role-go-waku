@@ -8,7 +8,7 @@
         address: '{{ ansible_host }}'
         tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku']
         meta:
-          node_enode: '{{ go_waku_node_multiaddr }}'
+          node_enode: '{{ go_waku_node_multiaddr | default("unknown") }}'
         checks:
           - name: '{{ go_waku_service_name }}-health'
             type: 'tcp'
@@ -30,7 +30,7 @@
         address: '{{ ansible_local.wireguard.address }}'
         tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku', 'websocket']
         meta:
-          node_enode: '/dns4/{{ go_waku_websocket_ssl_domain | mandatory }}/tcp/443/wss/p2p/{{ go_waku_node_peer_id }}'
+          node_enode: '{{ go_waku_node_websocket | mandatory }}'
         checks:
           - name: '{{ go_waku_service_name }}-websocket-health'
             type: 'tcp'

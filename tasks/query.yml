@@ -1,0 +1,46 @@
+---
+- name: 'Wait for RPC port to be available'
+  wait_for:
+    port: '{{ go_waku_rpc_port }}'
+    delay: 5
+
+- name: 'Extract address of the node for Consul'
+  uri:
+    url: 'http://localhost:{{ go_waku_rpc_port }}/'
+    method: POST
+    body: 
+      method: 'get_waku_v2_debug_v1_info'
+      params: []
+      jsonrpc: '2.0'
+      id: 1
+    status_code: 200
+    body_format: json
+  register: waku_info
+  ignore_errors: true
+
+- name: Verify we got the node address
+  assert:
+    that: 'waku_info.json.result.listenAddresses is defined'
+    fail_msg: 'Did not receive Waku node address!'
+    quiet: true
+
+- name: Extract LibP2P TCP address from list
+  set_fact:
+    go_waku_node_enr_uri: |-
+      {{ waku_info.json.result.enrUri }}
+    go_waku_node_multiaddr: |-
+      {{ waku_info.json.result.listenAddresses
+      | reject("contains", "/ws") | first }}
+
+- name: Extract LibP2P WS address from list
+  when: go_waku_websocket_enabled or go_waku_websockify_enabled
+  set_fact:
+    go_waku_node_websocket: |-
+      {{ waku_info.json.result.listenAddresses
+      | select("contains", "/ws") | first }}
+
+- name: Update multiaddress file
+  copy:
+    dest: '{{ go_waku_node_multiaddr_path }}'
+    content: '{{ go_waku_node_multiaddr | mandatory }}'
+    mode: 0755
