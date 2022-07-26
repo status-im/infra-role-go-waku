@@ -6,7 +6,7 @@
         name: '{{ go_waku_service_name }}'
         port: '{{ go_waku_libp2p_port }}'
         address: '{{ ansible_host }}'
-        tags: ['go', 'waku']
+        tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku']
         meta:
           node_enode: '{{ go_waku_node_multiaddr }}'
         checks:
@@ -18,7 +18,7 @@
         name: '{{ go_waku_service_name }}-rpc'
         port: '{{ go_waku_rpc_port }}'
         address: '{{ ansible_host }}'
-        tags: ['go', 'waku', 'rpc']
+        tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku', 'rpc']
         checks:
           - name: '{{ go_waku_service_name }}-rpc-health'
             type: 'script'
@@ -28,7 +28,7 @@
         name: '{{ go_waku_service_name }}-websocket'
         port: '{{ go_waku_websocket_port }}'
         address: '{{ ansible_local.wireguard.address }}'
-        tags: ['go', 'waku', 'websocket']
+        tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku', 'websocket']
         meta:
           node_enode: '/dns4/{{ go_waku_websocket_ssl_domain | mandatory }}/tcp/443/wss/p2p/{{ go_waku_node_peer_id }}'
         checks:
@@ -40,7 +40,7 @@
         name: '{{ go_waku_service_name }}-metrics'
         port: '{{ go_waku_metrics_port }}'
         address: '{{ ansible_local.wireguard.address }}'
-        tags: ['go', 'waku', 'metrics']
+        tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku', 'metrics']
         meta:
           container: '{{ go_waku_service_name }}'
         checks:
