@@ -25,6 +25,9 @@ go_waku_static_nodes: []
 go_waku_relay_enabled: true
 go_waku_store_enabled: false
 go_waku_store_nodes: []
+go_waku_store_persist_messages: false
+go_waku_store_capacity: 10000
+go_waku_store_seconds: 604800
 go_waku_filter_enabled: false
 go_waku_filter_nodes: []
 go_waku_lightpush_enabled: false

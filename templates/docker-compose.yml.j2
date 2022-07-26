@@ -36,6 +36,9 @@ services:
 {% endif %}
 {% if go_waku_store_enabled %}
       --store
+      --persist-messages=true
+      --store-capacity={{ go_waku_store_capacity }}
+      --store-seconds={{ go_waku_store_seconds }}
 {% for node in go_waku_store_nodes %}
       --store-node={{ node }}
 {% endfor %}
