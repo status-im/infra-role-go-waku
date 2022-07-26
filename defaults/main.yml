@@ -7,8 +7,6 @@ go_waku_cont_vol: '{{ go_waku_service_path }}/node'
 go_waku_cont_tag: 'latest'
 go_waku_cont_image: 'statusteam/go-waku:{{ go_waku_cont_tag }}'
 
-go_waku_dns4_domain_name: '{{ ansible_hostname }}'
-
 # Value for private node key which is used to create public enode key
 go_waku_node_key: ~
 go_waku_node_key_file_path: '{{ go_waku_cont_vol }}/nodekey'
@@ -22,6 +20,8 @@ go_waku_log_format: 'json'
 go_waku_public_address: '{{ ansible_host }}'
 # Nodes
 go_waku_static_nodes: []
+# DNS record to use in multiaddresses
+go_waku_dns4_domain_name: '{{ dns_entry }}'
 
 # Protocols
 go_waku_relay_enabled: true
