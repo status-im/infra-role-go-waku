@@ -20,7 +20,7 @@ services:
       GOLOG_LOG_FMT: '{{ go_waku_log_format }}'
     volumes:
       - '{{ go_waku_cont_vol }}/data:/data'
-{% if go_waku_websocket_enabled %}
+{% if go_waku_websocket_secure_enabled %}
       - '{{ go_waku_websocket_ssl_dir }}:{{ go_waku_websocket_ssl_dir | mandatory }}'
 {% endif %}
     ports:
