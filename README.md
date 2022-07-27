@@ -23,6 +23,15 @@ go_waku_filter_enabled: true
 go_waku_lightpush_enabled: true
 go_waku_rendezvous_enabled: true
 ```
+You can also configure Websocket with SSL:
+```
+go_waku_websocket_enabled: true
+go_waku_websocket_secure_enabled: true
+go_waku_websocket_port: 443
+go_waku_websocket_ssl_dir: '/etc/letsencrypt'
+go_waku_websocket_ssl_cert: '/etc/letsencrypt/live/{{ go_waku_websocket_domain }}/fullchain.pem'
+go_waku_websocket_ssl_key: '/etc/letsencrypt/live/{{ go_waku_websocket_domain }}/privkey.pem'
+```
 
 # Management
 

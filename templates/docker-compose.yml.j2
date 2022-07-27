@@ -20,6 +20,9 @@ services:
       GOLOG_LOG_FMT: '{{ go_waku_log_format }}'
     volumes:
       - '{{ go_waku_cont_vol }}/data:/data'
+{% if go_waku_websocket_enabled %}
+      - '{{ go_waku_websocket_ssl_dir }}:{{ go_waku_websocket_ssl_dir | mandatory }}'
+{% endif %}
     ports:
 {% if go_waku_rpc_enabled %}
       - '{{ go_waku_rpc_address }}:{{ go_waku_rpc_port }}:{{ go_waku_rpc_port }}/tcp'
@@ -84,6 +87,11 @@ services:
 {% if go_waku_websocket_enabled %}
       --ws
       --ws-port={{ go_waku_websocket_port }}
+{% endif %}
+      --websocket-secure-support={{ go_waku_websocket_secure_enabled | bool | to_json }}
+{% if go_waku_websocket_secure_enabled %}
+      --websocket-secure-key-path={{ go_waku_websocket_ssl_key | mandatory }}
+      --websocket-secure-cert-path={{ go_waku_websocket_ssl_cert | mandatory }}
 {% endif %}
 {% for node in go_waku_static_nodes %}
       --staticnode={{ node }}

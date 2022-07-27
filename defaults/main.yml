@@ -46,10 +46,16 @@ go_waku_rpc_admin_enabled: true
 go_waku_rpc_private_enabled: false
 go_waku_rpc_port: 8545
 go_waku_rpc_address: '127.0.0.1'
+# Metrics
 go_waku_metrics_enabled: true
 go_waku_metrics_port: 8008
+# Websocket
 go_waku_websocket_enabled: false
 go_waku_websocket_port: 9001
+go_waku_websocket_secure_enabled: false
+#go_waku_websocket_ssl_dir: '/etc/letsencrypt'
+#go_waku_websocket_ssl_cert: '/etc/letsencrypt/live/{{ nim_waku_websocket_domain }}/fullchain.pem'
+#go_waku_websocket_ssl_key: '/etc/letsencrypt/live/{{ nim_waku_websocket_domain }}/privkey.pem'
 
 # resource limits, mem in MB
 go_waku_cpu_limit: 0.60
