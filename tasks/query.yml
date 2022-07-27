@@ -33,7 +33,9 @@
       | reject("contains", "/ws") | first }}
 
 - name: Extract LibP2P WS address from list
-  when: go_waku_websocket_enabled or go_waku_websockify_enabled
+  when: |
+    not go_waku_websocket_enabled or 
+    not go_waku_websocket_secure_enabled
   set_fact:
     go_waku_node_websocket: |-
       {{ waku_info.json.result.listenAddresses
