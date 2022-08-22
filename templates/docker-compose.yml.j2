@@ -45,7 +45,7 @@ services:
       --store
       --persist-messages=true
       --store-capacity={{ go_waku_store_capacity }}
-      --store-seconds={{ go_waku_store_seconds }}
+      --store-duration={{ go_waku_store_duration }}
 {% for node in go_waku_store_nodes %}
       --store-node={{ node }}
 {% endfor %}
