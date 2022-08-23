@@ -52,7 +52,7 @@
   set_fact:
     consul_services: |
       {{ consul_services | rejectattr('name', 'match', '.*-websocket') | list }}
-  when: not go_waku_websocket_enabled
+  when: not go_waku_websocket_enabled and not go_waku_websocket_secure_enabled
 
 - name: Disable RPC service
   set_fact:
