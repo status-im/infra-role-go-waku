@@ -34,13 +34,23 @@ go_waku_filter_enabled: false
 go_waku_filter_nodes: []
 go_waku_lightpush_enabled: false
 go_waku_lightpush_nodes: []
+
 # experimental discovery support
 go_waku_rendezvous_enabled: false
 go_waku_rendezvous_nodes: []
 go_waku_rendezvous_server_enabled: false
 
+# DNS Discovery
+go_waku_dns_disc_enabled: false
+# go_waku_dns_disc_url: 'enrtree://AOFTICU2XWDULNLZGRMQS4RIZPAZEHYMV4FYHAPW563HNRAOERP7C@test.waku.nodes.status.im'
+
+# Discovery V5
+go_waku_disc_v5_enabled: false
+go_waku_disc_v5_bootstrap_nodes: []
+
 # Ports
 go_waku_libp2p_port: 9000
+go_waku_disc_v5_port: 9000
 go_waku_rpc_enabled: true
 go_waku_rpc_admin_enabled: true
 go_waku_rpc_private_enabled: false
