@@ -30,6 +30,7 @@ services:
       - '{{ go_waku_libp2p_port }}:{{ go_waku_libp2p_port }}/tcp'
       - '{{ go_waku_metrics_port }}:{{ go_waku_metrics_port }}/tcp'
       - '{{ go_waku_websocket_port }}:{{ go_waku_websocket_port }}/tcp'
+      - '{{ go_waku_disc_v5_port }}:{{ go_waku_disc_v5_port }}/udp'
     command: |
       --nodekey={{ go_waku_node_key | mandatory }}
       --log-level={{ go_waku_log_level }}
@@ -71,6 +72,17 @@ services:
 {% if go_waku_rendezvous_server_enabled %}
       --rendezvous-server
       --rendezvous-db-path=/data/rendezvous
+{% endif %}
+      --dns-discovery={{ go_waku_dns_disc_url | bool | to_json }}
+{% if go_waku_dns_disc_enabled %}
+      --dns-discovery-url={{ go_waku_dns_disc_url | mandatory }}
+{% endif %}
+      --discv5-discovery={{ go_waku_disc_v5_enabled | bool | to_json }}
+{% if go_waku_disc_v5_enabled %}
+      --discv5-udp-port={{ go_waku_disc_v5_port }}
+{% for node in go_waku_disc_v5_bootstrap_nodes %}
+      --discv5-bootstrap-node={{ node }}
+{% endfor %}
 {% endif %}
       --rpc={{ go_waku_rpc_enabled | bool | to_json }}
 {% if go_waku_rpc_enabled %}
