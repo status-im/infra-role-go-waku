@@ -31,6 +31,7 @@ services:
       - '{{ go_waku_metrics_port }}:{{ go_waku_metrics_port }}/tcp'
       - '{{ go_waku_websocket_port }}:{{ go_waku_websocket_port }}/tcp'
       - '{{ go_waku_disc_v5_port }}:{{ go_waku_disc_v5_port }}/udp'
+      - '{{ go_waku_websocket_secure_port }}:{{ go_waku_websocket_secure_port }}/tcp'
     command: |
       --nodekey={{ go_waku_node_key | mandatory }}
       --log-level={{ go_waku_log_level }}
@@ -97,11 +98,12 @@ services:
       --metrics-address=0.0.0.0
 {% endif %}
       --websocket-support={{ go_waku_websocket_enabled | bool | to_json }}
-{% if go_waku_websocket_enabled or go_waku_websocket_secure_enabled %}
+{% if go_waku_websocket_enabled %}
       --websocket-port={{ go_waku_websocket_port }}
 {% endif %}
       --websocket-secure-support={{ go_waku_websocket_secure_enabled | bool | to_json }}
 {% if go_waku_websocket_secure_enabled %}
+      --websocket-secure-port={{ go_waku_websocket_secure_port }}
       --websocket-secure-key-path={{ go_waku_websocket_ssl_key | mandatory }}
       --websocket-secure-cert-path={{ go_waku_websocket_ssl_cert | mandatory }}
 {% endif %}

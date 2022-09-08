@@ -63,6 +63,7 @@ go_waku_metrics_port: 8008
 go_waku_websocket_enabled: false
 go_waku_websocket_port: 9001
 go_waku_websocket_secure_enabled: false
+go_waku_websocket_secure_port: 443
 #go_waku_websocket_ssl_dir: '/etc/letsencrypt'
 #go_waku_websocket_ssl_cert: '/etc/letsencrypt/live/{{ nim_waku_websocket_domain }}/fullchain.pem'
 #go_waku_websocket_ssl_key: '/etc/letsencrypt/live/{{ nim_waku_websocket_domain }}/privkey.pem'
