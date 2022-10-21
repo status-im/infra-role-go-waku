@@ -40,10 +40,9 @@ services:
       --dns4-domain-name={{ go_waku_dns4_domain_name }}
       --use-db
       --dbpath=/data/store.db
-      --relay={{go_waku_relay_enabled}}
+      --relay={{ go_waku_relay_enabled | bool | to_json }}
 {% if go_waku_store_enabled %}
       --store
-      --persist-messages=true
       --store-capacity={{ go_waku_store_capacity }}
       --store-duration={{ go_waku_store_duration }}
 {% for node in go_waku_store_nodes %}
