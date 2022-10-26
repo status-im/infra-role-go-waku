@@ -41,35 +41,32 @@ services:
       --use-db
       --dbpath=/data/store.db
       --relay={{ go_waku_relay_enabled | bool | to_json }}
+      --store={{ go_waku_store_enabled | bool | to_json }}
 {% if go_waku_store_enabled %}
-      --store
       --store-capacity={{ go_waku_store_capacity }}
       --store-duration={{ go_waku_store_duration }}
 {% for node in go_waku_store_nodes %}
       --store-node={{ node }}
 {% endfor %}
 {% endif %}
+      --filter={{ go_waku_filter_enabled | bool | to_json }}
 {% if go_waku_filter_enabled %}
-      --filter
 {% for node in go_waku_filter_nodes %}
       --filter-node={{ node }}
 {% endfor %}
 {% endif %}
+      --lightpush={{ go_waku_lightpush_enabled | bool | to_json }}
 {% if go_waku_lightpush_enabled %}
-      --lightpush
 {% for node in go_waku_lightpush_nodes %}
       --lightpush-node={{ node }}
 {% endfor %}
 {% endif %}
+      --rendezvous={{ go_waku_rendezvous_enabled | bool | to_json }}
 {% if go_waku_rendezvous_enabled %}
-      --rendezvous
-{% for node in go_waku_lightpush_nodes %}
-      --lightpush-node={{ node }}
-{% endfor %}
-{% endif %}
+      --rendezvous-server={{ go_waku_rendezvous_server_enabled | bool | to_json }}
 {% if go_waku_rendezvous_server_enabled %}
-      --rendezvous-server
       --rendezvous-db-path=/data/rendezvous
+{% endif %}
 {% endif %}
       --dns-discovery={{ go_waku_dns_disc_enabled | bool | to_json }}
 {% if go_waku_dns_disc_enabled %}
@@ -89,8 +86,8 @@ services:
       --rpc-admin={{ go_waku_rpc_admin_enabled | bool | to_json }}
       --rpc-private={{ go_waku_rpc_private_enabled | bool | to_json }}
 {% endif %}
+      --metrics={{ go_waku_metrics_enabled | bool | to_json }}
 {% if go_waku_metrics_enabled %}
-      --metrics
       --metrics-port={{ go_waku_metrics_port }}
       --metrics-address=0.0.0.0
 {% endif %}
