@@ -61,13 +61,6 @@ services:
       --lightpush-node={{ node }}
 {% endfor %}
 {% endif %}
-      --rendezvous={{ go_waku_rendezvous_enabled | bool | to_json }}
-{% if go_waku_rendezvous_enabled %}
-      --rendezvous-server={{ go_waku_rendezvous_server_enabled | bool | to_json }}
-{% if go_waku_rendezvous_server_enabled %}
-      --rendezvous-db-path=/data/rendezvous
-{% endif %}
-{% endif %}
       --dns-discovery={{ go_waku_dns_disc_enabled | bool | to_json }}
 {% if go_waku_dns_disc_enabled %}
       --dns-discovery-url={{ go_waku_dns_disc_url | mandatory }}

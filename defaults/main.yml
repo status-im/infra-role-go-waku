@@ -35,11 +35,6 @@ go_waku_filter_nodes: []
 go_waku_lightpush_enabled: false
 go_waku_lightpush_nodes: []
 
-# experimental discovery support
-go_waku_rendezvous_enabled: false
-go_waku_rendezvous_nodes: []
-go_waku_rendezvous_server_enabled: false
-
 # DNS Discovery
 go_waku_dns_disc_enabled: false
 # go_waku_dns_disc_url: 'enrtree://AOFTICU2XWDULNLZGRMQS4RIZPAZEHYMV4FYHAPW563HNRAOERP7C@test.waku.nodes.status.im'
