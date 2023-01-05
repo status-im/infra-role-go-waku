@@ -14,6 +14,14 @@
             type: 'tcp'
             tcp: 'localhost:{{ go_waku_libp2p_port }}'
 
+      - id:   '{{ go_waku_service_name }}-enr'
+        name: '{{ go_waku_service_name }}-enr'
+        port: '{{ go_waku_rpc_port }}'
+        address: '{{ ansible_host }}'
+        tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku', 'enr']
+        meta:
+          node_enode: '{{ go_waku_node_enr_uri | default("unknown") }}'
+
       - id:   '{{ go_waku_service_name }}-rpc'
         name: '{{ go_waku_service_name }}-rpc'
         port: '{{ go_waku_rpc_port }}'
