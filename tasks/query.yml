@@ -30,7 +30,9 @@
       {{ waku_info.json.result.enrUri }}
     go_waku_node_multiaddr: |-
       {{ waku_info.json.result.listenAddresses
-      | reject("contains", "/ws") | first }}
+      | select("contains", "/p2p") 
+      | select("contains", "/dns4") 
+      | first }}
 
 - name: Extract LibP2P WS address from list
   when: |
@@ -39,7 +41,9 @@
   set_fact:
     go_waku_node_websocket: |-
       {{ waku_info.json.result.listenAddresses
-      | select("contains", "/ws") | first }}
+      | select("contains", "/ws")
+      | select("contains", "/dns4")
+      | first }}
 
 - name: Update multiaddress file
   copy:
