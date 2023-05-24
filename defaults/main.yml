@@ -69,6 +69,10 @@ go_waku_mem_limit: '{{ (ansible_memtotal_mb * 0.6) | int }}'
 go_waku_cpu_reserve: 0.20
 go_waku_mem_reserve: '{{ (ansible_memtotal_mb * 0.2) | int }}'
 
+# Resource Scaling
+go_waku_resource_scaling_memory_percentage: 25
+go_waku_resource_scaling_fd_percentage: 50
+
 # container restart policy
 go_waku_restart_condition: 'any'
 go_waku_restart_window_sec: 120
