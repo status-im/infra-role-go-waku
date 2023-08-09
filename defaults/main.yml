@@ -30,6 +30,7 @@ go_waku_store_nodes: []
 go_waku_store_persist_messages: false
 go_waku_store_capacity: 10000
 go_waku_store_duration: '168h' # 7 days
+go_waku_store_vacuum: false
 go_waku_filter_enabled: false
 go_waku_filter_nodes: []
 go_waku_lightpush_enabled: false

@@ -44,6 +44,7 @@ services:
       --store-message-db-url=sqlite3:///data/store.db
       --store-message-retention-capacity={{ go_waku_store_capacity }}
       --store-message-retention-time={{ go_waku_store_duration }}
+      --store-message-db-vacuum={{ go_waku_store_vacuum | bool | to_json }}
 {% for node in go_waku_store_nodes %}
       --store-node={{ node }}
 {% endfor %}
