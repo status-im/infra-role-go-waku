@@ -77,7 +77,6 @@ services:
       --rpc-port={{ go_waku_rpc_port }}
       --rpc-address=0.0.0.0
       --rpc-admin={{ go_waku_rpc_admin_enabled | bool | to_json }}
-      --rpc-private={{ go_waku_rpc_private_enabled | bool | to_json }}
 {% endif %}
       --metrics={{ go_waku_metrics_enabled | bool | to_json }}
 {% if go_waku_metrics_enabled %}
