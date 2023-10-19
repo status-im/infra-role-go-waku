@@ -16,6 +16,8 @@ services:
           memory: '{{ go_waku_mem_reserve }}M'
       restart_policy:
         condition: '{{ go_waku_restart_condition }}'
+        max_attempts: {{ go_waku_restart_max_attempts }}
+        window: '{{ go_waku_restart_window_sec }}s'
     environment:
       GOLOG_LOG_FMT: '{{ go_waku_log_format }}'
     volumes:
