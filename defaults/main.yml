@@ -76,7 +76,6 @@ go_waku_resource_scaling_fd_percentage: 50
 # container restart policy
 go_waku_restart_condition: 'on-failure'
 go_waku_restart_max_attempts: 3
-go_waku_restart_window_sec: 120
 
 # For querying for fleet peers
 consul_url: 'http://localhost:8500/v1/catalog'
