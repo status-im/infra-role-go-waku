@@ -11,6 +11,7 @@ go_waku_cont_image: 'wakuorg/go-waku:{{ go_waku_cont_tag }}'
 go_waku_node_key: ~
 go_waku_node_key_file_path: '{{ go_waku_cont_vol }}/nodekey'
 go_waku_node_multiaddr_path: '{{ go_waku_cont_vol }}/multiaddr'
+go_waku_node_tmp_path: '{{ go_waku_cont_vol }}/data/tmp'
 
 # Available: DEBUG, INFO, WARN, ERROR, DPANIC, PANIC, FATAL
 go_waku_log_level: 'INFO'

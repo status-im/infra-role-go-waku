@@ -19,6 +19,7 @@ services:
         max_attempts: {{ go_waku_restart_max_attempts }}
     environment:
       GOLOG_LOG_FMT: '{{ go_waku_log_format }}'
+      SQLITE_TMPDIR: '{{ go_waku_node_tmp_path }}'
     volumes:
       - '{{ go_waku_cont_vol }}/data:/data'
 {% if go_waku_websocket_secure_enabled %}

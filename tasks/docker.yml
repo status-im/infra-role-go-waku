@@ -9,6 +9,7 @@
   with_items:
     - '{{ go_waku_service_path }}'
     - '{{ go_waku_cont_vol }}/data'
+    - '{{ go_waku_node_tmp_path }}'
 
 - name: Create script for calling RPC endpoint
   template:
