@@ -102,3 +102,6 @@ services:
 {% endfor %}
       --resource-scaling-memory-percentage={{ go_waku_resource_scaling_memory_percentage | float }}
       --resource-scaling-fd-percentage={{ go_waku_resource_scaling_fd_percentage | float }}
+{% for flag in go_waku_extra_flags %}
+      {{ flag }}
+{% endfor %}

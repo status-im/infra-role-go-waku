@@ -23,6 +23,8 @@ go_waku_public_address: '{{ ansible_host }}'
 go_waku_static_nodes: []
 # DNS record to use in multiaddresses
 go_waku_dns4_domain_name: '{{ dns_entry }}'
+# Extra CLI flags
+go_waku_extra_flags: []
 
 # Protocols
 go_waku_relay_enabled: true
