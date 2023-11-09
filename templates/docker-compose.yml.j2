@@ -40,9 +40,9 @@ services:
       --port={{ go_waku_libp2p_port }}
       --ext-ip={{ go_waku_public_address }}
       --dns4-domain-name={{ go_waku_dns4_domain_name }}
-      --relay={{ go_waku_relay_enabled | bool | to_json }}
-      --store={{ go_waku_store_enabled | bool | to_json }}
-{% if go_waku_store_enabled %}
+      --relay={{ 'true' if 'relay' in go_waku_protocols_enabled else 'false' }}
+{% if 'store' in go_waku_protocols_enabled %}
+      --store=true
       --store-message-db-url=sqlite3:///data/store.db
       --store-message-retention-capacity={{ go_waku_store_capacity }}
       --store-message-retention-time={{ go_waku_store_duration }}
@@ -50,18 +50,24 @@ services:
 {% for node in go_waku_store_nodes %}
       --store-node={{ node }}
 {% endfor %}
+{% else %}
+      --store=false
 {% endif %}
-      --filter={{ go_waku_filter_enabled | bool | to_json }}
-{% if go_waku_filter_enabled %}
+{% if 'filter' in go_waku_protocols_enabled %}
+      --filter=true
 {% for node in go_waku_filter_nodes %}
       --filter-node={{ node }}
 {% endfor %}
+{% else %}
+      --filter=false
 {% endif %}
-      --lightpush={{ go_waku_lightpush_enabled | bool | to_json }}
-{% if go_waku_lightpush_enabled %}
+{% if 'lightpush' in go_waku_protocols_enabled %}
+      --lightpush=true
 {% for node in go_waku_lightpush_nodes %}
       --lightpush-node={{ node }}
 {% endfor %}
+{% else %}
+      --lightpush=false
 {% endif %}
       --dns-discovery={{ go_waku_dns_disc_enabled | bool | to_json }}
 {% if go_waku_dns_disc_enabled %}

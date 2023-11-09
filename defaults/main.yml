@@ -27,16 +27,14 @@ go_waku_dns4_domain_name: '{{ dns_entry }}'
 go_waku_extra_flags: []
 
 # Protocols
-go_waku_relay_enabled: true
-go_waku_store_enabled: false
+# Available: relay, store, filter, lightpush
+go_waku_protocols_enabled: ['relay']
 go_waku_store_nodes: []
 go_waku_store_persist_messages: false
 go_waku_store_capacity: 10000
 go_waku_store_duration: '168h' # 7 days
 go_waku_store_vacuum: false
-go_waku_filter_enabled: false
 go_waku_filter_nodes: []
-go_waku_lightpush_enabled: false
 go_waku_lightpush_nodes: []
 
 # DNS Discovery

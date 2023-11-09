@@ -9,6 +9,7 @@
         tags: ['env:{{ env }}', 'stage:{{ stage }}', 'go', 'waku']
         meta:
           node_enode: '{{ go_waku_node_multiaddr | default("unknown") }}'
+          protocols: '{{ go_waku_protocols_enabled | join(",") }}'
         checks:
           - name: '{{ go_waku_service_name }}-health'
             type: 'tcp'
