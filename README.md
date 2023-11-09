@@ -22,6 +22,12 @@ go_waku_store_enabled: true
 go_waku_filter_enabled: true
 go_waku_lightpush_enabled: true
 go_waku_rendezvous_enabled: true
+
+# Discovery
+go_waku_dns_disc_enabled: true
+go_waku_dns_disc_urls:
+  - 'enrtree://AIO6LUM3IVWCU2KCPBBI6FEH2W42IGK3ASCZHZGG5TIXUR56OGQUO@test.status.nodes.status.im'
+  - 'enrtree://AMOJVZX4V6EXP7NTJPMAYJYST2QP6AJXYW76IU6VGJS7UVSNDYZG4@boot.test.shards.nodes.status.im'
 ```
 You can also configure Websocket with SSL:
 ```

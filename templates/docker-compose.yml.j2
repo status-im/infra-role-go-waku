@@ -65,7 +65,9 @@ services:
 {% endif %}
       --dns-discovery={{ go_waku_dns_disc_enabled | bool | to_json }}
 {% if go_waku_dns_disc_enabled %}
-      --dns-discovery-url={{ go_waku_dns_disc_url | mandatory }}
+{% for url in go_waku_dns_disc_urls %}
+      --dns-discovery-url={{ url | mandatory }}
+{% endfor %}
 {% endif %}
       --discv5-discovery={{ go_waku_disc_v5_enabled | bool | to_json }}
 {% if go_waku_disc_v5_enabled %}
