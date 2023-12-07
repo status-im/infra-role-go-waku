@@ -53,6 +53,10 @@ go_waku_rpc_enabled: true
 go_waku_rpc_admin_enabled: true
 go_waku_rpc_port: 8545
 go_waku_rpc_address: '127.0.0.1'
+# Topic configuration
+go_waku_pubsub_topics: ['/waku/2/default-waku/proto']
+# Topics and its public key to be used for message validation.
+go_waku_protected_topics: []
 # Metrics
 go_waku_metrics_enabled: true
 go_waku_metrics_port: 8008

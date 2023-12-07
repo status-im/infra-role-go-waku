@@ -41,6 +41,12 @@ services:
       --ext-ip={{ go_waku_public_address }}
       --dns4-domain-name={{ go_waku_dns4_domain_name }}
       --relay={{ 'true' if 'relay' in go_waku_protocols_enabled else 'false' }}
+{% for topic in go_waku_pubsub_topics %}
+      --pubsub-topic='{{ topic }}'
+{% endfor %}
+{% for protected_topic in go_waku_protected_topics %}
+      --protected-topic='{{ protected_topic | mandatory }}'
+{% endfor %}
 {% if 'store' in go_waku_protocols_enabled %}
       --store=true
       --store-message-db-url=sqlite3:///data/store.db
