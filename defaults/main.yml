@@ -13,6 +13,9 @@ go_waku_node_key_file_path: '{{ go_waku_cont_vol }}/nodekey'
 go_waku_node_multiaddr_path: '{{ go_waku_cont_vol }}/multiaddr'
 go_waku_node_tmp_path: '{{ go_waku_cont_vol }}/data/tmp'
 
+# Optional cluster-id flag
+#go_waku_cluster_id: 1
+
 # Available: DEBUG, INFO, WARN, ERROR, DPANIC, PANIC, FATAL
 go_waku_log_level: 'INFO'
 # Available: color, nocolor, json
