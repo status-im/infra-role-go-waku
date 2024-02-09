@@ -1,3 +1,5 @@
+## :warning: This is a legacy repository and no longer used.
+
 # Description
 
 This Ansible role deploys a [go-waku](https://github.com/status-im/go-waku) node which implements the [Waku v2](https://rfc.vac.dev/spec/10/) spec.
